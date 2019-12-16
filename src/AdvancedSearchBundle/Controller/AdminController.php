@@ -270,6 +270,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
         $list->load();
         $userList = $list->getUsers();
 
+        $users = [];
         foreach ($userList as $user) {
             $users[] = [
                 'id'    => $user->getId(),
