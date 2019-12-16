@@ -80,9 +80,6 @@ pimcore.bundle.advancedSearch.searchConfigPanel = Class.create(pimcore.element.a
             }
         );
 
-        //set default Product class
-        this.classSelection.setValue(3);
-
         if (this.data.classId) {
             this.conditionPanel = new pimcore.bundle.advancedSearch.searchConfig.conditionPanel(this.data.classId, this.data.conditions);
             this.conditionPanelContainer.add(this.conditionPanel.getConditionPanel());

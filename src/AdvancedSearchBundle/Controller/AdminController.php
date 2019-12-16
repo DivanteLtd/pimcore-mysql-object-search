@@ -23,16 +23,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminController
 {
-    private const UNSUPORTED_FIELDS = [
-        'manufacturerMfgid',
-        'supplierMfgid',
-    ];
-
-    private const RENAME_LABELS = [
-        'manufacturerName' => 'Producent',
-        'supplierName'     => 'Dostawca',
-    ];
-
     /**
      * @param Request $request
      * @Route("/get-fields")
@@ -75,14 +65,6 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
         $fields = [];
 
         foreach ($fieldSelection as $entry) {
-            if (in_array($entry->getFieldName(), static::UNSUPORTED_FIELDS)) {
-                continue;
-            }
-
-            if (isset(static::RENAME_LABELS[$entry->getFieldName()])) {
-                $entry->setFieldLabel(static::RENAME_LABELS[$entry->getFieldName()]);
-            }
-
             $fields[] = $entry->toArray();
         }
 
