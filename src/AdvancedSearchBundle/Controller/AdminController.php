@@ -17,7 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class AdminController
  *
- * @Route("/admin")
  *
  * @SuppressWarnings(PHPMD)
  */
