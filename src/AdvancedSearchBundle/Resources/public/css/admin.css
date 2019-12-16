@@ -1,0 +1,40 @@
+.pimcore_bundle_advancedSearch_saveAndShare {
+    background: url("/bundles/pimcoreadmin/img/flat-color-icons/collaboration.svg") center center no-repeat !important;
+}
+
+.pimcore_bundle_advancedSearch_grid {
+    background: url("/bundles/pimcoreadmin/img/flat-color-icons/grid.svg") center center no-repeat !important;
+}
+
+.pimcore_bundle_advancedSearch_filter {
+    background: url("/bundles/pimcoreadmin/img/flat-color-icons/filled_filter.svg") center center no-repeat !important;
+}
+
+.pimcore_bundle_advancedSearch {
+    background: url("/bundles/pimcoreadmin/img/flat-color-icons/binoculars.svg") center center no-repeat !important;
+}
+
+.pimcore_bundle_nav_icon_advancedSearch {
+    background: url("/bundles/pimcoreadmin/img/flat-color-icons/binoculars.svg") center center no-repeat !important;
+}
+
+.pimcore_version_6 .pimcore_bundle_nav_icon_advancedSearch {
+    background: url("/bundles/pimcoreadmin/img/flat-white-icons/binoculars.svg") center center no-repeat !important;
+}
+
+#pimcore_bundle_advancedSearch_toolbar {
+    background-image: url(/bundles/pimcoreadmin/img/flat-color-icons/binoculars.svg) !important;
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    position: relative;
+}
+
+#pimcore_bundle_advancedSearch_toolbar:before {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    bottom: 0px;
+    right: 5px;
+    content: "";
+    background: url(/bundles/pimcoreadmin/img/flat-color-icons/settings.svg) center center no-repeat !important;
+}

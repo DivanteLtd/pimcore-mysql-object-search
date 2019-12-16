@@ -1,0 +1,4 @@
+_pimcore_advancedsearch_backend:
+    resource: "@DivanteLtd/AdvancedSearchBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/bundle/advanced-search

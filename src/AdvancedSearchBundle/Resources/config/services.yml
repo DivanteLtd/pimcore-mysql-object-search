@@ -1,0 +1,98 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # auto-register all controllers as services
+    DivanteLtd\AdvancedSearchBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    bundle.advanced_search.service:
+        alias: DivanteLtd\AdvancedSearchBundle\Service\FilterService
+
+    DivanteLtd\AdvancedSearchBundle\Service\FilterService:
+        arguments:
+            - '@logger'
+            - '@pimcore_admin.security.token_storage_user_resolver'
+            - '@bundle.advanced_search.filter_locator'
+        tags:
+            - { name: monolog.logger, channel: pimcore_advanced_search }
+
+    bundle.advanced_search.filter_locator:
+        class: Symfony\Component\DependencyInjection\ServiceLocator
+        tags: ['container.service_locator']
+
+    bundle.advanced_search.filter.default:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\DefaultAdapter
+        shared: false
+
+    bundle.advanced_search.filter.calculatedValue:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\CalculatedValue
+        shared: false
+
+    bundle.advanced_search.filter.checkbox:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Checkbox
+        shared: false
+
+    bundle.advanced_search.filter.country:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Country
+        shared: false
+
+    bundle.advanced_search.filter.countrymultiselect:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Countrymultiselect
+        shared: false
+
+    bundle.advanced_search.filter.date:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Date
+        shared: false
+
+    bundle.advanced_search.filter.datetime:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Datetime
+        shared: false
+
+    bundle.advanced_search.filter.input:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Input
+        shared: false
+
+    bundle.advanced_search.filter.language:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Language
+        shared: false
+
+    bundle.advanced_search.filter.languagemultiselect:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Languagemultiselect
+        shared: false
+
+    bundle.advanced_search.filter.localizedfields:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Localizedfields
+        shared: false
+
+    bundle.advanced_search.filter.multiselect:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Multiselect
+        shared: false
+
+    bundle.advanced_search.filter.numeric:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Numeric
+        shared: false
+
+    bundle.advanced_search.filter.quantityValue:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\QuantityValue
+        shared: false
+
+    bundle.advanced_search.filter.select:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Select
+        shared: false
+
+    bundle.advanced_search.filter.time:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Time
+        shared: false
+
+    bundle.advanced_search.filter.user:
+        class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\User
+        shared: false
+
+    DivanteLtd\AdvancedSearchBundle\Installer:
+        public: true
+        arguments:
+            $bundle: "@=service('kernel').getBundle('AdvancedSearchBundle')"

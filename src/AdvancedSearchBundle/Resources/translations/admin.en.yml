@@ -1,0 +1,38 @@
+bundle_advancedSearch: Advanced Search
+bundle_advancedSearch_field: Field
+bundle_advancedSearch_condition: Condition
+bundle_advancedSearch_term: Term
+bundle_advancedSearch_operator: Operator
+bundle_advancedSearch_language: Language
+bundle_advancedSearch_filter: Filter
+bundle_advancedSearch_filters: Filters
+bundle_advancedSearch_type: Type
+bundle_advancedSearch_new: New
+bundle_advancedSearch_search: Open existing Saved Search
+bundle_advancedSearch_ignoreInheritance: No Inheritance
+bundle_advancedSearch_date: Date
+bundle_advancedSearch_results: Results
+bundle_advancedSearch_subclass:  Class
+bundle_advancedSearch_ids:  IDs
+bundle_advancedSearch_fulltextterm:  Search Term
+bundle_advancedSearch_save_and_share:  Save And Share
+bundle_advancedSearch_share:  Sharing
+bundle_advancedSearch_combine_entries_with:  Combine Entries with
+bundle_advancedSearch_combine_entries_with_must:  MUST
+bundle_advancedSearch_combine_entries_with_should:  SHOULD
+bundle_advancedSearch_group: Group
+bundle_advancedSearch_save_success: Search saved successfully
+bundle_advancedSearch_save_error: Error occurred during save search
+bundle_advancedSearch_category:  Category
+bundle_advancedSearch_open_saved_searches:  Open saved Searches
+bundle_advancedSearch_users:  Users
+bundle_advancedSearch_owner:  Owner
+bundle_advancedSearch_save_as_copy:  Save as Copy
+bundle_advancedSearch_name_copy_suffix:  (copy)
+bundle_advancedSearch_delete_error:  Error during deleting Saved Search
+bundle_advancedSearch_delete_really:  Do you really want to delete the Saved Search?
+bundle_advancedSearch_add_to_shortcuts:  Add To Short Cuts
+bundle_advancedSearch_remove_from_shortcuts:  Remove From Short Cuts
+bundle_advancedSearch_short_cut_error:  Cannot add short cut for not saved search
+bundle_advancedSearch_updating_index:  Currently updating search index
+bundle_advancedsearch_search: Advanced Object Search

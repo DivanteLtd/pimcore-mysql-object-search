@@ -1,0 +1,19 @@
+{
+  "name": "divante-ltd/pimcore-mysql-object-search",
+  "type": "pimcore-bundle",
+  "require": {
+    "pimcore/pimcore": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "DivanteLtd\\AdvancedSearchBundle\\": "src/AdvancedSearchBundle"
+    }
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "DivanteLtd\\AdvancedSearchBundle\\AdvancedSearchBundle"
+      ]
+    }
+  }
+}

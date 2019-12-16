@@ -1,0 +1,38 @@
+bundle_advancedSearch: Wyszukiwanie zaawansowane
+bundle_advancedSearch_field: Atrybut
+bundle_advancedSearch_condition: Warunek
+bundle_advancedSearch_term: Wartość
+bundle_advancedSearch_operator: Operator
+bundle_advancedSearch_language: Język
+bundle_advancedSearch_filter: Filtr
+bundle_advancedSearch_filters: Filtry
+bundle_advancedSearch_type: Type
+bundle_advancedSearch_new: Nowe
+bundle_advancedSearch_search: Otwórz istniejące konfiguracje
+bundle_advancedSearch_ignoreInheritance: No Inheritance
+bundle_advancedSearch_date: Date
+bundle_advancedSearch_results: Wyniki
+bundle_advancedSearch_save_and_share:  Zapisz i udostępnij
+bundle_advancedSearch_subclass:  Klasa
+bundle_advancedSearch_ids:  IDs
+bundle_advancedSearch_fulltextterm:  Search Term
+bundle_advancedSearch_share:  Udostępnianie
+bundle_advancedSearch_combine_entries_with:  Combine Entries with
+bundle_advancedSearch_combine_entries_with_must:  MUST
+bundle_advancedSearch_combine_entries_with_should:  SHOULD
+bundle_advancedSearch_group: Grupa
+bundle_advancedSearch_save_success: wyszukiwania zostały zapisane
+bundle_advancedSearch_save_error: Error occurred during save search
+bundle_advancedSearch_category:  Kategoria
+bundle_advancedSearch_open_saved_searches:  Otwórz zapisane wyszukiwania
+bundle_advancedSearch_users:  Użytkownicy
+bundle_advancedSearch_owner:  Właściciel
+bundle_advancedSearch_save_as_copy:  Zapisz jako kopię
+bundle_advancedSearch_name_copy_suffix:  (kopia)
+bundle_advancedSearch_delete_error: Błąd podczas usuwania wyszukiwania
+bundle_advancedSearch_delete_really:  Czy na pewno chcesz usunąć wyszukiwanie?
+bundle_advancedSearch_add_to_shortcuts:  Dodaj do skrótów
+bundle_advancedSearch_remove_from_shortcuts:  Usuń ze skrótów
+bundle_advancedSearch_short_cut_error:  Nie możesz dodać skrótu dla niezapisanego wyszukiwania
+bundle_advancedSearch_updating_index:  Currently updating search index
+bundle_advancedsearch_search: Zaawansowane wyszukiwanie
