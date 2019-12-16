@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class AdminController
  *
- *
+ * @Route("/admin")
  * @SuppressWarnings(PHPMD)
  */
 class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminController
