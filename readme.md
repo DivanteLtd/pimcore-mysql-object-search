@@ -5,12 +5,10 @@
 [![Total Downloads](https://poser.pugx.org/divante-ltd/pimcore-mysql-object-search/downloads)](https://packagist.org/packages/divante-ltd/pimcore-mysql-object-search)
 [![License](https://poser.pugx.org/divante-ltd/pimcore-mysql-object-search/license)](https://github.com/DivanteLtd/divante-ltd/pimcore-mysql-object-search/blob/master/LICENSE)
 
-Scheduled Export lets you run ordinary grid exports in background.
-
-![Scheduled Export](docs/example.jpeg?raw=true "Scheduled Export")
+Similar to Pimcore's Advanced Object Search, but does not need Elasticsearch
 
 **Table of Contents**
-- [Scheduled Export](#scheduled-export)
+- [MySQL Object Search](#mysql-object-search)
 	- [Compatibility](#compatibility)
 	- [Installing/Getting started](#installinggetting-started)
 	- [Requirements](#requirements)

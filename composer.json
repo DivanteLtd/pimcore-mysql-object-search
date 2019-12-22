@@ -2,7 +2,7 @@
   "name": "divante-ltd/pimcore-mysql-object-search",
   "type": "pimcore-bundle",
   "license": "GPL-3.0-or-later",
-  "description": "Scheduled Export lets you run ordinary grid exports in background.",
+  "description": "Similar to Pimcore's Advanced Object Search, but does not need Elasticsearch",
   "keywords": [
     "pimcore",
     "pimcore-plugin"
