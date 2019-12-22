@@ -100,8 +100,7 @@ class FilterService
         LoggerInterface $logger,
         TokenStorageUserResolver $userResolver,
         ContainerInterface $filterLocator
-    )
-    {
+    ) {
         $this->user = $userResolver->getUser();
         $this->logger = $logger;
         $this->filterLocator = $filterLocator;
