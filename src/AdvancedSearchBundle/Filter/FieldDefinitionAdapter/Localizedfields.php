@@ -125,7 +125,7 @@ class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param array $fieldFilter
      *
      * filter field format as follows:
      *  stdObject with language as key and languageFilter array as values like

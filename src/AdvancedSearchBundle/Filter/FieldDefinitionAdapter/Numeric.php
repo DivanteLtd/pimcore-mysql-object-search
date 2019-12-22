@@ -66,17 +66,17 @@ class Numeric extends DefaultAdapter implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param mixed $fieldFilter
      *
      * filter field format as follows:
      *   - simple number like
      *       234.54   --> creates TermQuery
      *   - array with gt, gte, lt, lte like
      *      ["gte" => 40, "lte" => 45] --> creates RangeQuery
-     * @param bool   $ignoreInheritance
+     * @param bool $ignoreInheritance
      * @param string $path
      *
-     * @return BuilderInterface
+     * @return RangeQuery|TermQuery
      */
     public function getQueryPart($fieldFilter, $ignoreInheritance = false, $path = '')
     {
@@ -95,7 +95,8 @@ class Numeric extends DefaultAdapter implements IFieldDefinitionAdapter
 
     /**
      * @param Concrete $object
-     * @param bool     $ignoreInheritance
+     * @param bool $ignoreInheritance
+     * @return mixed
      */
     protected function doGetIndexDataValue($object, $ignoreInheritance = false)
     {

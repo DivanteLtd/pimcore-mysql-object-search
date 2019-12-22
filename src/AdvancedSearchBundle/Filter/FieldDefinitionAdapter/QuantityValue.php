@@ -89,17 +89,17 @@ class QuantityValue extends Numeric implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param array $fieldFilter
      *
      * filter field format as follows:
      *   - simple array with number/unitID like
      *       ["value" => 234.54, "unit" => 3]   --> creates TermQuery
      *   - array with gt, gte, lt, lte like
      *      ["value" => ["gte" => 40, "lte" => 45], "unit" => 3] --> creates RangeQuery
-     * @param bool   $ignoreInheritance
+     * @param bool $ignoreInheritance
      * @param string $path
      *
-     * @return BuilderInterface
+     * @return BoolQuery
      */
     public function getQueryPart($fieldFilter, $ignoreInheritance = false, $path = '')
     {
@@ -133,7 +133,8 @@ class QuantityValue extends Numeric implements IFieldDefinitionAdapter
 
     /**
      * @param Concrete $object
-     * @param bool     $ignoreInheritance
+     * @param bool $ignoreInheritance
+     * @return mixed
      */
     protected function doGetIndexDataValue($object, $ignoreInheritance = false)
     {

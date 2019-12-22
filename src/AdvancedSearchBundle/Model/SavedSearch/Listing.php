@@ -16,6 +16,10 @@ namespace DivanteLtd\AdvancedSearchBundle\Model\SavedSearch;
 
 use Pimcore\Model;
 
+/**
+ * Class Listing
+ * @package DivanteLtd\AdvancedSearchBundle\Model\SavedSearch
+ */
 class Listing extends Model\Listing\AbstractListing
 {
     /**
@@ -26,8 +30,7 @@ class Listing extends Model\Listing\AbstractListing
     public $savedSearches = [];
 
     /**
-     * Tests if the given key is an valid order key to sort the results
-     *
+     * @param mixed $key
      * @return bool
      */
     public function isValidOrderKey($key)
@@ -36,7 +39,7 @@ class Listing extends Model\Listing\AbstractListing
     }
 
     /**
-     * @param $savedSearches
+     * @param mixed $savedSearches
      *
      * @return $this
      */

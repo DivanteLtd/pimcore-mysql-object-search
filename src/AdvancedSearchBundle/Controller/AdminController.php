@@ -24,6 +24,9 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
 {
     /**
      * @param Request $request
+     * @param Service $service
+     * @return JsonResponse
+     * @throws \Exception
      * @Route("/get-fields")
      */
     public function getFieldsAction(Request $request, Service $service)
@@ -174,9 +177,14 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     }
 
     /**
-     * //     * @param Request $request
+     * //     *
+     * @param Request $request
      * //     * @Route("/get-batch-jobs")
-     * //     */
+     * //
+     * @param Service $service
+     * @return JsonResponse
+     * @throws \Exception
+     */
     public function getBatchJobsAction(Request $request, Service $service)
     {
         if ($request->get('language')) {
@@ -212,6 +220,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
      * @param Service $service
      *
      * @return JsonResponse
+     * @throws \Exception
      * @Route("/get-export-jobs")
      */
     public function getExportJobsAction(Request $request, Service $service)
@@ -248,7 +257,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     }
 
     /**
-     * @param $fileHandle
+     * @param string $fileHandle
      *
      * @return string
      */
@@ -260,6 +269,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/get-users")
+     * @return JsonResponse
      */
     public function getUsersAction(Request $request)
     {
@@ -284,6 +294,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/save")
+     * @return JsonResponse
      */
     public function saveAction(Request $request)
     {
@@ -313,6 +324,8 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
 
     /**
      * @param Request $request
+     * @return JsonResponse
+     * @throws \Exception
      * @Route("/load-search")
      */
     public function loadSearchAction(Request $request)
@@ -376,6 +389,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/find")
+     * @return JsonResponse
      */
     public function findAction(Request $request)
     {
@@ -452,6 +466,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/load-short-cuts")
+     * @return JsonResponse
      */
     public function loadShortCutsAction(Request $request)
     {
@@ -472,6 +487,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/toggle-short-cut")
+     * @return JsonResponse
      */
     public function toggleShortCutAction(Request $request)
     {
@@ -495,6 +511,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
     /**
      * @param Request $request
      * @Route("/delete")
+     * @return JsonResponse
      */
     public function deleteAction(Request $request)
     {

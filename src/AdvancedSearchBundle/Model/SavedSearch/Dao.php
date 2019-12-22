@@ -16,18 +16,26 @@ namespace DivanteLtd\AdvancedSearchBundle\Model\SavedSearch;
 
 use Pimcore\Model;
 
+/**
+ * Class Dao
+ * @package DivanteLtd\AdvancedSearchBundle\Model\SavedSearch
+ */
 class Dao extends Model\Dao\AbstractDao
 {
     const TABLE_NAME = 'bundle_advancedsearch_savedsearch';
 
     /**
-     * @param $id
-     *
+     * @param int $id
+     * @return void
      * @throws \Exception
      */
     public function getById($id): void
     {
-        $data = $this->db->fetchRow('SELECT * FROM ' . $this->db->quoteIdentifier(self::TABLE_NAME) . ' WHERE id = ?', $id);
+        $data = $this->db->fetchRow(
+            'SELECT * FROM ' . $this->db->quoteIdentifier(self::TABLE_NAME) . ' WHERE id = ?',
+            $id
+        );
+
         if (!$data['id']) {
             throw new \Exception('SavedSearch item with id ' . $id . ' not found');
         }
@@ -38,6 +46,7 @@ class Dao extends Model\Dao\AbstractDao
      * Save object to database
      *
      * @return bool
+     * @throws \Exception
      */
     public function save()
     {
@@ -77,6 +86,7 @@ class Dao extends Model\Dao\AbstractDao
 
     /**
      * Deletes object from database
+     * @return void
      */
     public function delete(): void
     {

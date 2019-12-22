@@ -32,9 +32,9 @@ class FieldSelectionInformation
     /**
      * FieldSelectionInformation constructor.
      *
-     * @param $fieldName
-     * @param $fieldLabel
-     * @param $fieldType
+     * @param string $fieldName
+     * @param string $fieldLabel
+     * @param string $fieldType
      * @param array $context
      */
     public function __construct($fieldName, $fieldLabel, $fieldType, $context = [])
@@ -55,6 +55,7 @@ class FieldSelectionInformation
 
     /**
      * @param string $fieldName
+     * @return void
      */
     public function setFieldName($fieldName): void
     {
@@ -71,6 +72,7 @@ class FieldSelectionInformation
 
     /**
      * @param string $fieldLabel
+     * @return void
      */
     public function setFieldLabel($fieldLabel): void
     {
@@ -87,6 +89,7 @@ class FieldSelectionInformation
 
     /**
      * @param string $fieldType
+     * @return void
      */
     public function setFieldType($fieldType): void
     {
@@ -103,6 +106,7 @@ class FieldSelectionInformation
 
     /**
      * @param array $context
+     * @return void
      */
     public function setContext($context): void
     {
@@ -115,10 +119,10 @@ class FieldSelectionInformation
     public function toArray()
     {
         return [
-            'fieldName'  => $this->fieldName,
+            'fieldName' => $this->fieldName,
             'fieldLabel' => $this->fieldLabel,
-            'fieldType'  => $this->fieldType,
-            'context'    => $this->context,
+            'fieldType' => $this->fieldType,
+            'context' => $this->context,
         ];
     }
 }
