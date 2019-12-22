@@ -5,8 +5,8 @@ set -eu
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../tmp"
 DEPENDENCIES="$( cd "$(dirname "$0")" ; pwd -P )/dependencies.txt"
 
-PACKAGE_NAME="ScheduledExportBundle"
-BUNDLE_NAME="DivanteScheduledExportBundle"
+PACKAGE_NAME="AdvancedSearchBundle"
+BUNDLE_NAME="AdvancedSearchBundle"
 
 CREATE_DB=${CREATE_DB-true}
 DB_HOST=${DB_HOST-localhost}
