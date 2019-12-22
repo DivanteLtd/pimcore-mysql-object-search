@@ -10,11 +10,19 @@ use Doctrine\DBAL\Schema\Schema;
 use Pimcore\Config;
 use Pimcore\Extension\Bundle\Installer\MigrationInstaller;
 
+/**
+ * Class Installer
+ * @package DivanteLtd\AdvancedSearchBundle
+ */
 class Installer extends MigrationInstaller
 {
     const QUEUE_TABLE_NAME = 'bundle_advancedsearch_update_queue';
 
-    /** {@inheritdoc} */
+    /**
+     * @param Schema $schema
+     * @param Version $version
+     * @return bool
+     */
     public function migrateInstall(Schema $schema, Version $version)
     {
         $this->installDatabase();
@@ -22,11 +30,18 @@ class Installer extends MigrationInstaller
         return $this->isInstalled();
     }
 
-    /** {@inheritdoc} */
+    /**
+     * @param Schema $schema
+     * @param Version $version
+     * @return void
+     */
     public function migrateUninstall(Schema $schema, Version $version): void
     {
     }
 
+    /**
+     * @return void
+     */
     private function installDatabase(): void
     {
         //create tables
@@ -66,6 +81,9 @@ class Installer extends MigrationInstaller
         $res->save();
     }
 
+    /**
+     * @return bool
+     */
     public function isInstalled()
     {
         $result = null;

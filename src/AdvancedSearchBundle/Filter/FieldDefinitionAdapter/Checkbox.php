@@ -66,7 +66,8 @@ class Checkbox extends DefaultAdapter implements IFieldDefinitionAdapter
 
     /**
      * @param Concrete $object
-     * @param bool     $ignoreInheritance
+     * @param bool $ignoreInheritance
+     * @return bool
      */
     protected function doGetIndexDataValue($object, $ignoreInheritance = false)
     {
@@ -82,7 +83,7 @@ class Checkbox extends DefaultAdapter implements IFieldDefinitionAdapter
             AbstractObject::setGetInheritedValues($inheritanceBackup);
         }
 
-        return (bool) $value;
+        return (bool)$value;
     }
 
     /**
@@ -108,15 +109,15 @@ class Checkbox extends DefaultAdapter implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param mixed $fieldFilter
      *
      * filter field format as follows:
      *   - simple boolean like
      *       true | false  --> creates QueryStringQuery
-     * @param bool   $ignoreInheritance
+     * @param bool $ignoreInheritance
      * @param string $path
      *
-     * @return BuilderInterface
+     * @return TermQuery
      */
     public function getQueryPart($fieldFilter, $ignoreInheritance = false, $path = '')
     {

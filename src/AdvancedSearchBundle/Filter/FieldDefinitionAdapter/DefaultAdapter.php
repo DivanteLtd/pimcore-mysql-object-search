@@ -64,6 +64,7 @@ class DefaultAdapter implements IFieldDefinitionAdapter
 
     /**
      * @param Data $fieldDefinition
+     * @return void
      */
     public function setFieldDefinition(Data $fieldDefinition): void
     {
@@ -72,6 +73,7 @@ class DefaultAdapter implements IFieldDefinitionAdapter
 
     /**
      * @param bool $considerInheritance
+     * @return void
      */
     public function setConsiderInheritance(bool $considerInheritance): void
     {
@@ -118,7 +120,8 @@ class DefaultAdapter implements IFieldDefinitionAdapter
 
     /**
      * @param Concrete $object
-     * @param bool     $ignoreInheritance
+     * @param bool $ignoreInheritance
+     * @return string
      */
     protected function doGetIndexDataValue($object, $ignoreInheritance = false)
     {
@@ -189,15 +192,15 @@ class DefaultAdapter implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param mixed $fieldFilter
      *
      * filter field format as follows:
      *   - simple string like
      *       "filter for value"  --> creates QueryStringQuery
-     * @param bool   $ignoreInheritance
+     * @param bool $ignoreInheritance
      * @param string $path
      *
-     * @return BuilderInterface
+     * @return QueryStringQuery
      */
     public function getQueryPart($fieldFilter, $ignoreInheritance = false, $path = '')
     {

@@ -64,17 +64,18 @@ class Datetime extends Numeric implements IFieldDefinitionAdapter
     }
 
     /**
-     * @param $fieldFilter
+     * @param mixed $fieldFilter
+     * @param bool $ignoreInheritance
+     * @param string $path
      *
      * filter field format as follows:
      *   - simple date like
      *       2017-02-26   --> creates TermQuery
      *   - array with gt, gte, lt, lte like
      *      ["gte" => 2017-02-26, "lte" => 2017-05-26] --> creates RangeQuery
-     * @param bool   $ignoreInheritance
-     * @param string $path
      *
-     * @return BuilderInterface
+     * @return RangeQuery|TermQuery
+     * @throws \Exception
      */
     public function getQueryPart($fieldFilter, $ignoreInheritance = false, $path = '')
     {

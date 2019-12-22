@@ -16,8 +16,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 class AdvancedSearchExtension extends ConfigurableExtension
 {
     /**
-     * @param array            $config
+     * @param array $config
      * @param ContainerBuilder $container
+     * @return void
+     * @throws \Exception
      */
     public function loadInternal(array $config, ContainerBuilder $container): void
     {
