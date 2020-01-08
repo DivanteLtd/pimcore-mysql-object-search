@@ -17,6 +17,10 @@ namespace DivanteLtd\AdvancedSearchBundle\Model\SavedSearch\Listing;
 use DivanteLtd\AdvancedSearchBundle\Model\SavedSearch;
 use Pimcore\Model;
 
+/**
+ * Class Dao
+ * @package DivanteLtd\AdvancedSearchBundle\Model\SavedSearch\Listing
+ */
 class Dao extends Model\Listing\Dao\AbstractDao
 {
     /**
@@ -26,7 +30,11 @@ class Dao extends Model\Listing\Dao\AbstractDao
      */
     public function load()
     {
-        $searchIds = $this->db->fetchCol('SELECT id FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' . $this->getCondition() . $this->getOrder() . $this->getOffsetLimit(), $this->model->getConditionVariables());
+        $searchIds = $this->db->fetchCol(
+            'SELECT id FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' .
+            $this->getCondition() . $this->getOrder() . $this->getOffsetLimit(),
+            $this->model->getConditionVariables()
+        );
 
         $searches = [];
         foreach ($searchIds as $id) {
@@ -40,15 +48,29 @@ class Dao extends Model\Listing\Dao\AbstractDao
         return $searches;
     }
 
+    /**
+     * @return mixed
+     */
     public function loadIdList()
     {
-        return $this->db->fetchCol('SELECT id FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' . $this->getCondition() . $this->getGroupBy() . $this->getOrder() . $this->getOffsetLimit(), $this->model->getConditionVariables());
+        return $this->db->fetchCol(
+            'SELECT id FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' .
+            $this->getCondition() . $this->getGroupBy() . $this->getOrder() . $this->getOffsetLimit(),
+            $this->model->getConditionVariables()
+        );
     }
 
+    /**
+     * @return int
+     */
     public function getTotalCount()
     {
         try {
-            $amount = (int) $this->db->fetchOne('SELECT COUNT(*) as amount FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' . $this->getCondition(), $this->model->getConditionVariables());
+            $amount = (int) $this->db->fetchOne(
+                'SELECT COUNT(*) as amount FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' .
+                $this->getCondition(),
+                $this->model->getConditionVariables()
+            );
         } catch (\Exception $e) {
             return 0;
         }

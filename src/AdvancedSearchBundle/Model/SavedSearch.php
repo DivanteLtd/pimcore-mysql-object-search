@@ -16,6 +16,10 @@ namespace DivanteLtd\AdvancedSearchBundle\Model;
 
 use Pimcore\Model;
 
+/**
+ * Class SavedSearch
+ * @package DivanteLtd\AdvancedSearchBundle\Model
+ */
 class SavedSearch extends Model\AbstractModel
 {
     /**
@@ -66,7 +70,7 @@ class SavedSearch extends Model\AbstractModel
     /**
      * @static
      *
-     * @param $id
+     * @param int $id
      *
      * @return SavedSearch
      */
@@ -82,6 +86,9 @@ class SavedSearch extends Model\AbstractModel
         }
     }
 
+    /**
+     * @return void
+     */
     public function save(): void
     {
         $this->getDao()->save();
@@ -256,6 +263,7 @@ class SavedSearch extends Model\AbstractModel
 
     /**
      * @param mixed $sharedUserIds
+     * @return void
      */
     public function setSharedUserIds($sharedUserIds): void
     {
@@ -276,6 +284,7 @@ class SavedSearch extends Model\AbstractModel
 
     /**
      * @param mixed $shortCutUserIds
+     * @return void
      */
     public function setShortCutUserIds($shortCutUserIds): void
     {
@@ -300,6 +309,7 @@ class SavedSearch extends Model\AbstractModel
 
     /**
      * @param Model\User $user
+     * @return void
      */
     public function addShortCutForUser(Model\User $user): void
     {
@@ -315,6 +325,7 @@ class SavedSearch extends Model\AbstractModel
 
     /**
      * @param Model\User $user
+     * @return void
      */
     public function removeShortCutForUser(Model\User $user): void
     {

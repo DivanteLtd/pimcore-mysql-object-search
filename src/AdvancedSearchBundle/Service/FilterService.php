@@ -22,55 +22,55 @@ class FilterService
     private const OPERATORS = [
         'contain' => [
             'expression' => '%s LIKE ?',
-            'data'       => '%_data_%',
+            'data' => '%_data_%',
         ],
         'not_contain' => [
             'expression' => '(%s LIKE ?) IS NOT TRUE',
-            'data'       => '%_data_%',
+            'data' => '%_data_%',
         ],
         'equal' => [
             'expression' => '%s = ?',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'not_equal' => [
             'expression' => '!(%s <=> ?)',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'start_from' => [
             'expression' => '%s LIKE ?',
-            'data'       => '_data_%',
+            'data' => '_data_%',
         ],
         'not_start_from' => [
             'expression' => '(%s LIKE ?) IS NOT TRUE',
-            'data'       => '_data_%',
+            'data' => '_data_%',
         ],
         'is_defined' => [
             'expression' => 'LENGTH(%s) > ?',
-            'data'       => '0',
+            'data' => '0',
         ],
         'is_not_defined' => [
             'expression' => '(LENGTH(%s) > ?) IS NOT TRUE',
-            'data'       => '0',
+            'data' => '0',
         ],
         'less' => [
             'expression' => '%s < ?',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'less_equal' => [
             'expression' => '%s <= ?',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'greater' => [
             'expression' => '%s > ?',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'greater_equal' => [
             'expression' => '%s > ?',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
         'is_null' => [
             'expression' => '%s IS NULL',
-            'data'       => '_data_',
+            'data' => '_data_',
         ],
     ];
 
@@ -92,9 +92,9 @@ class FilterService
     /**
      * Service constructor.
      *
-     * @param LoggerInterface          $logger
+     * @param LoggerInterface $logger
      * @param TokenStorageUserResolver $userResolver
-     * @param ContainerInterface       $filterLocator
+     * @param ContainerInterface $filterLocator
      */
     public function __construct(
         LoggerInterface $logger,
@@ -110,7 +110,7 @@ class FilterService
      * returns field definition adapter for given field definition
      *
      * @param ClassDefinition\Data $fieldDefinition
-     * @param bool                 $considerInheritance
+     * @param bool $considerInheritance
      *
      * @return IFieldDefinitionAdapter|null
      */
@@ -131,7 +131,7 @@ class FilterService
      * returns selectable fields with their type information for search frontend
      *
      * @param ClassDefinition|Definition $definition
-     *
+     * @param bool $allowInheritance
      * @return FieldSelectionInformation[]
      */
     public function getFieldSelectionInformationForClassDefinition($definition, $allowInheritance = false)
@@ -153,12 +153,12 @@ class FilterService
     }
 
     /**
-     * @param int    $classId
+     * @param int $classId
      * @param string $fieldName
      *
+     * @return array
      * @throws \Exception
      *
-     * @return array
      */
     public function getFieldOptions(int $classId, string $fieldName): array
     {
@@ -181,7 +181,7 @@ class FilterService
 
         if (!$field->getMandatory()) {
             $empty = [
-                'key'   => 'empty',
+                'key' => 'empty',
                 'value' => 'null',
             ];
 
@@ -193,7 +193,7 @@ class FilterService
 
     /**
      * @param Listing $listing
-     * @param array   $conditions
+     * @param array $conditions
      *
      * @return Listing
      */
@@ -211,9 +211,9 @@ class FilterService
 
     /**
      * @param Listing $listing
-     * @param array   $filter
-     *
-     * @return array
+     * @param array $filter
+     * @param string $operator
+     * @return Listing
      */
     protected function processFilter(Listing $listing, array $filter, string $operator): Listing
     {

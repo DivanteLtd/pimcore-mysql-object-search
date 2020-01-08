@@ -61,10 +61,10 @@ class FilterEntry
     /**
      * FilterEntry constructor.
      *
-     * @param string                                  $fieldname
+     * @param string $fieldname
      * @param array|BuilderInterface|\stdClass|string $filterEntryData
-     * @param string                                  $operator
-     * @param bool                                    $ignoreInheritance
+     * @param string $operator
+     * @param bool $ignoreInheritance
      */
     public function __construct($fieldname, $filterEntryData, $operator = BoolQuery::MUST, $ignoreInheritance = false)
     {
@@ -100,6 +100,7 @@ class FilterEntry
 
     /**
      * @param string $operator
+     * @return void
      */
     public function setOperator($operator): void
     {
@@ -116,6 +117,7 @@ class FilterEntry
 
     /**
      * @param string $fieldname
+     * @return void
      */
     public function setFieldname($fieldname): void
     {
@@ -123,7 +125,7 @@ class FilterEntry
     }
 
     /**
-     * @return \stdClass | BuilderInterface | string | array
+     * @return \stdClass|BuilderInterface|string|array
      */
     public function getFilterEntryData()
     {
@@ -131,7 +133,8 @@ class FilterEntry
     }
 
     /**
-     * @param \stdClass | BuilderInterface | string | array $filterEntryData
+     * @param \stdClass|BuilderInterface|string|array $filterEntryData
+     * @return void
      */
     public function setFilterEntryData($filterEntryData): void
     {
