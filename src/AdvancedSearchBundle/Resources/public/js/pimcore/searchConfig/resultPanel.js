@@ -590,7 +590,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 });
 
 if (pimcore.object.helpers.gridcolumnconfig) {
-    pimcore.bundle.advancedObjectSearch.searchConfig.resultPanel.addMethods(pimcore.object.helpers.gridcolumnconfig);
+    pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(pimcore.object.helpers.gridcolumnconfig);
 } else {
-    pimcore.bundle.advancedObjectSearch.searchConfig.resultPanel.addMethods(pimcore.element.helpers.gridColumnConfig);
+    pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(pimcore.element.helpers.gridColumnConfig);
 }
