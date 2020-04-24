@@ -250,10 +250,10 @@ class DefaultAdapter implements IFieldDefinitionAdapter
     protected function getFieldSelectionContext(): array
     {
         $fieldOperators = array_map(
-            function ($op) {
-                $op['fieldLabel'] = $this->translator->trans($op['fieldLabel'], [], 'admin');
+            function ($operator) {
+                $operator['fieldLabel'] = $this->translator->trans($operator['fieldLabel'], [], 'admin');
 
-                return $op;
+                return $operator;
             },
             $this->getFieldOperators()
         );

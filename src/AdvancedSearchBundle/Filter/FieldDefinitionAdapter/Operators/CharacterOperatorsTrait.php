@@ -35,8 +35,11 @@ trait CharacterOperatorsTrait
         ];
 
         return array_map(
-            function ($op) {
-                return ['fieldName' => $op, 'fieldLabel' => 'bundle_advancedSearch_character_operator_' . $op];
+            function ($operator) {
+                return [
+                    'fieldName' => $operator,
+                    'fieldLabel' => 'bundle_advancedSearch_character_operator_' . $operator
+                ];
             },
             $operators
         );

@@ -30,6 +30,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class Localizedfields
  *
  * @package DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
 {
