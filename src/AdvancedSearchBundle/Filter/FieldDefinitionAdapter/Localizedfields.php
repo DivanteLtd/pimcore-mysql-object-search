@@ -51,8 +51,11 @@ class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
      *
      * @throws \Exception
      */
-    public function __construct(Service $service, TranslatorInterface $translator, LocaleServiceInterface $locale = null)
-    {
+    public function __construct(
+        Service $service,
+        TranslatorInterface $translator,
+        LocaleServiceInterface $locale = null
+    ) {
         parent::__construct($service, $translator);
 
         $this->localeService = $locale;
