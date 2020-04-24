@@ -36,3 +36,11 @@ bundle_advancedSearch_remove_from_shortcuts:  Remove From Short Cuts
 bundle_advancedSearch_short_cut_error:  Cannot add short cut for not saved search
 bundle_advancedSearch_updating_index:  Currently updating search index
 bundle_advancedsearch_search: Advanced Object Search
+bundle_advancedSearch_character_operator_equal: =
+bundle_advancedSearch_character_operator_not_equal: !=
+bundle_advancedSearch_character_operator_contain: Contains
+bundle_advancedSearch_character_operator_not_contain: Does not contain
+bundle_advancedSearch_character_operator_start_from: Starts with
+bundle_advancedSearch_character_operator_not_start_from: Does not start with
+bundle_advancedSearch_character_operator_is_defined: Is defined
+bundle_advancedSearch_character_operator_is_not_defined: Is not defined

@@ -22,6 +22,7 @@ use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\ClassDefinition\Data;
 use Pimcore\Model\DataObject\Concrete;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class DefaultAdapter
@@ -53,13 +54,19 @@ class DefaultAdapter implements IFieldDefinitionAdapter
     protected $service;
 
     /**
-     * DefaultAdapter constructor.
-     *
-     * @param Service $service
+     * @var TranslatorInterface
      */
-    public function __construct(Service $service)
+    protected $translator;
+
+    /**
+     * DefaultAdapter constructor.
+     * @param Service $service
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(Service $service, TranslatorInterface $translator)
     {
         $this->service = $service;
+        $this->translator = $translator;
     }
 
     /**
@@ -242,8 +249,17 @@ class DefaultAdapter implements IFieldDefinitionAdapter
      */
     protected function getFieldSelectionContext(): array
     {
+        $fieldOperators = array_map(
+            function ($op) {
+                $op['fieldLabel'] = $this->translator->trans($op['fieldLabel'], [], 'admin');
+
+                return $op;
+            },
+            $this->getFieldOperators()
+        );
+
         return [
-            'operators'               => $this->getFieldOperators(),
+            'operators'               => $fieldOperators,
             'classInheritanceEnabled' => false,
         ];
     }

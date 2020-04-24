@@ -24,6 +24,7 @@ use Pimcore\Localization\LocaleServiceInterface;
 use Pimcore\Model\DataObject\ClassDefinition\Data;
 use Pimcore\Model\DataObject\Concrete;
 use Pimcore\Tool;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class Localizedfields
@@ -50,9 +51,9 @@ class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
      *
      * @throws \Exception
      */
-    public function __construct(Service $service, LocaleServiceInterface $locale = null)
+    public function __construct(Service $service, TranslatorInterface $translator, LocaleServiceInterface $locale = null)
     {
-        parent::__construct($service);
+        parent::__construct($service, $translator);
 
         $this->localeService = $locale;
         if (!$locale) {
