@@ -9,6 +9,8 @@
 
 namespace DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Operators;
 
+use Symfony\Component\Translation\TranslatorInterface;
+
 /**
  * Trait CharacterOperatorsTrait
  *
@@ -21,15 +23,25 @@ trait CharacterOperatorsTrait
      */
     protected function getFieldOperators(): array
     {
-        return [
-            ['fieldName' => 'equal', 'fieldLabel' => '='],
-            ['fieldName' => 'not_equal', 'fieldLabel' => '!='],
-            ['fieldName' => 'contain', 'fieldLabel' => 'Zawiera'],
-            ['fieldName' => 'not_contain', 'fieldLabel' => 'Nie zawiera'],
-            ['fieldName' => 'start_from', 'fieldLabel' => 'Zaczyna się od'],
-            ['fieldName' => 'not_start_from', 'fieldLabel' => 'Nie zaczyna się od'],
-            ['fieldName' => 'is_defined', 'fieldLabel' => 'Jest zdefiniowany'],
-            ['fieldName' => 'is_not_defined', 'fieldLabel' => 'Nie jest zdefiniowany'],
+        $operators = [
+            'equal',
+            'not_equal',
+            'contain',
+            'not_contain',
+            'start_from',
+            'not_start_from',
+            'is_defined',
+            'is_not_defined',
         ];
+
+        return array_map(
+            function ($operator) {
+                return [
+                    'fieldName' => $operator,
+                    'fieldLabel' => 'bundle_advancedSearch_character_operator_' . $operator
+                ];
+            },
+            $operators
+        );
     }
 }

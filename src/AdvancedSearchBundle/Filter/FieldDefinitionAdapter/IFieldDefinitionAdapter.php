@@ -8,6 +8,7 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 use ONGR\ElasticsearchDSL\Query\TermLevel\ExistsQuery;
 use Pimcore\Model\DataObject\ClassDefinition\Data;
 use Pimcore\Model\DataObject\Concrete;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Interface IFieldDefinitionAdapter
@@ -24,7 +25,7 @@ interface IFieldDefinitionAdapter
      *
      * @param Service $service
      */
-    public function __construct(Service $service);
+    public function __construct(Service $service, TranslatorInterface $translator);
 
     /**
      * @param Data $fieldDefinition

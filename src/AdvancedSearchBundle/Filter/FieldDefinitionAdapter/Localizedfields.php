@@ -24,11 +24,13 @@ use Pimcore\Localization\LocaleServiceInterface;
 use Pimcore\Model\DataObject\ClassDefinition\Data;
 use Pimcore\Model\DataObject\Concrete;
 use Pimcore\Tool;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class Localizedfields
  *
  * @package DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
 {
@@ -50,9 +52,12 @@ class Localizedfields extends DefaultAdapter implements IFieldDefinitionAdapter
      *
      * @throws \Exception
      */
-    public function __construct(Service $service, LocaleServiceInterface $locale = null)
-    {
-        parent::__construct($service);
+    public function __construct(
+        Service $service,
+        TranslatorInterface $translator,
+        LocaleServiceInterface $locale = null
+    ) {
+        parent::__construct($service, $translator);
 
         $this->localeService = $locale;
         if (!$locale) {
