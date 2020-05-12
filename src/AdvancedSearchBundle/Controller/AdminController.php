@@ -145,6 +145,19 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
 
                 $sortBy = $sort->property;
                 $sortDirection = $sort->direction;
+
+                $colMappings = [
+                    'key' => 'o_key',
+                    'fullpath' => ['o_path', 'o_key'],
+                    'id' => 'o_id',
+                    'published' => 'o_published',
+                    'modificationDate' => 'o_modificationDate',
+                    'creationDate' => 'o_creationDate'
+                ];
+
+                if (array_key_exists($sortBy, $colMappings)) {
+                    $sortBy = $colMappings[$sortBy];
+                }
             }
 
             $listClass = '\\Pimcore\\Model\\DataObject\\' . ucfirst($className) . '\\Listing';
