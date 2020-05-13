@@ -181,6 +181,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 
         this.store = gridHelper.getStore(this.noBatchColumns, this.batchAppendColumns);
         this.store.setPageSize(itemsPerPage);
+        this.store.proxy.actionMethods.read = 'POST';
 
 
         var gridColumns = gridHelper.getGridColumns();
