@@ -22,8 +22,14 @@ trait LogicalOperatorsTrait
     protected function getFieldOperators(): array
     {
         return [
-            true,
-            false,
+            [
+                'fieldName' => true,
+                'fieldLabel' => 'bundle_advancedSearch_character_operator_true',
+            ],
+            [
+                'fieldName' => false,
+                'fieldLabel' => 'bundle_advancedSearch_character_operator_false',
+            ],
         ];
     }
 }

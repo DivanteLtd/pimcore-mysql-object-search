@@ -44,3 +44,5 @@ bundle_advancedSearch_character_operator_start_from: Zaczyna się od
 bundle_advancedSearch_character_operator_not_start_from: Nie zaczyna się od
 bundle_advancedSearch_character_operator_is_defined: Jest zdefiniowany
 bundle_advancedSearch_character_operator_is_not_defined: Nie jest zdefiniowany
+bundle_advancedSearch_character_operator_true: Prawda
+bundle_advancedSearch_character_operator_false: Fałsz
