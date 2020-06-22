@@ -92,6 +92,26 @@ services:
         class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\User
         shared: false
 
+    bundle.advanced_search.filter.many_to_one_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToOneRelation
+      shared: false
+
+    bundle.advanced_search.filter.many_to_many_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToManyRelation
+      shared: false
+
+    bundle.advanced_search.filter.advanced_many_to_many_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\AdvancedManyToManyRelation
+      shared: false
+
+    bundle.advanced_search.filter.many_to_many_object_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToManyObjectRelation
+      shared: false
+
+    bundle.advanced_search.filter.advanced_many_to_many_object_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\AdvancedManyToManyObjectRelation
+      shared: false
+
     DivanteLtd\AdvancedSearchBundle\Installer:
         public: true
         arguments:

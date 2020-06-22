@@ -54,6 +54,11 @@ class AdvancedSearchBundle extends AbstractPimcoreBundle
             '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/date.js',
             '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/time.js',
             '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/quantityValue.js',
+            '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/manyToManyOne.js',
+            '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/manyToManyRelation.js',
+            '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/advancedManyToManyRelation.js',
+            '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/manyToManyObjectRelation.js',
+            '/bundles/advancedsearch/js/pimcore/searchConfig/fieldConditionPanel/advancedManyToManyObjectRelation.js',
         ];
     }
 

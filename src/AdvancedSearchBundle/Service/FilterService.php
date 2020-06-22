@@ -220,7 +220,16 @@ class FilterService
         $operation = $filter['operator'];
 
         $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
-        $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
+
+        if (
+            is_array($filter['filterEntryData']) &&
+            array_key_exists('type', $filter['filterEntryData']) &&
+            array_key_exists('id', $filter['filterEntryData'])
+        ) {
+
+        } else {
+            $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
+        }
 
         if ($filter['operator'] === 'equal' && $data === 'null') {
             $expression = sprintf(static::OPERATORS['is_null']['expression'], $filter['fieldname']);
