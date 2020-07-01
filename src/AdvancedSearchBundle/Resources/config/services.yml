@@ -92,6 +92,10 @@ services:
         class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\User
         shared: false
 
+    bundle.advanced_search.filter.many_to_one_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToOneRelation
+      shared: false
+
     DivanteLtd\AdvancedSearchBundle\Installer:
         public: true
         arguments:

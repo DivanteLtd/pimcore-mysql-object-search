@@ -72,6 +72,9 @@ class FilterService
             'expression' => '%s IS NULL',
             'data' => '_data_',
         ],
+        'equal_related' => [
+            'expression' => '%s__id = ? AND %s__type = ?',
+        ],
     ];
 
     /**
@@ -219,8 +222,17 @@ class FilterService
     {
         $operation = $filter['operator'];
 
-        $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
-        $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
+        if (is_array($filter['filterEntryData'])) {
+            $expression = sprintf(
+                static::OPERATORS[$operation]['expression'],
+                $filter['fieldname'],
+                $filter['fieldname']
+            );
+            $data = $this->getRelatedData($filter);
+        } else {
+            $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
+            $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
+        }
 
         if ($filter['operator'] === 'equal' && $data === 'null') {
             $expression = sprintf(static::OPERATORS['is_null']['expression'], $filter['fieldname']);
@@ -232,5 +244,23 @@ class FilterService
         $listing->addConditionParam($expression, $data, $operator);
 
         return $listing;
+    }
+
+    /**
+     * @param array $filter
+     * @return array
+     */
+    protected function getRelatedData(array $filter): array
+    {
+        if (
+            !array_key_exists('type', $filter['filterEntryData']) &&
+            !array_key_exists('id', $filter['filterEntryData'])
+        ) {
+            throw new \InvalidArgumentException('Invalid filter entry data');
+        }
+
+        $filterData = $filter['filterEntryData'];
+
+        return [$filterData['id'][0], $filterData['type']];
     }
 }

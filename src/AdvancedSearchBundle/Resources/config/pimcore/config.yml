@@ -17,3 +17,4 @@ advanced_search:
         select: 'bundle.advanced_search.filter.select'
         time: 'bundle.advanced_search.filter.time'
         user: 'bundle.advanced_search.filter.user'
+        manyToOneRelation: 'bundle.advanced_search.filter.many_to_one_relation'
