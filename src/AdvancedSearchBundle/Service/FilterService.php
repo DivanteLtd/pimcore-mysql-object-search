@@ -223,15 +223,15 @@ class FilterService
         $operation = $filter['operator'];
 
         if (is_array($filter['filterEntryData'])) {
-            $data = $this->getRelatedData($filter);
             $expression = sprintf(
                 static::OPERATORS[$operation]['expression'],
                 $filter['fieldname'],
                 $filter['fieldname']
             );
+            $data = $this->getRelatedData($filter);
         } else {
-            $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
             $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
+            $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
         }
 
         if ($filter['operator'] === 'equal' && $data === 'null') {
