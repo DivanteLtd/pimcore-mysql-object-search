@@ -84,7 +84,7 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
 
                                             if(newValue != oldValue) {
                                                 this.subConditionsPanel.removeAll();
-                                                this.subConditions = new pimcore.bundle.advancedObjectSearch.searchConfig.conditionPanel(newValue, null, "auto");
+                                                this.subConditions = new pimcore.bundle.advancedSearch.searchConfig.conditionPanel(newValue, null, "auto");
                                                 this.subConditionsPanel.add(this.subConditions.getConditionPanel());
                                             }
 
@@ -96,7 +96,7 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                             this.subConditionsPanel = Ext.create('Ext.panel.Panel', {});
 
                             if(this.data.filterEntryData && this.data.filterEntryData.classId) {
-                                this.subConditions = new pimcore.bundle.advancedObjectSearch.searchConfig.conditionPanel(this.data.filterEntryData.classId, this.data.filterEntryData, "auto");
+                                this.subConditions = new pimcore.bundle.advancedSearch.searchConfig.conditionPanel(this.data.filterEntryData.classId, this.data.filterEntryData, "auto");
                                 this.subConditionsPanel.add(this.subConditions.getConditionPanel());
                             }
 

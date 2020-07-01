@@ -27,7 +27,7 @@ use Pimcore\Model\DataObject\Concrete;
 
 class ManyToOneRelation extends DefaultAdapter implements IFieldDefinitionAdapter
 {
-    use Operators\NumericOperatorsTrait;
+    use Operators\RelatedOperatorsTrait;
 
     /**
      * field type for search frontend
@@ -170,7 +170,6 @@ class ManyToOneRelation extends DefaultAdapter implements IFieldDefinitionAdapte
         }
         if($this->fieldDefinition->getObjectsAllowed()) {
             $allowedTypes[] = ["object", "object_ids"];
-            $allowedTypes[] = ["object_filter", "object_filter"];
 
             foreach($this->fieldDefinition->getClasses() as $class) {
                 $allowedClasses[] = $class['classes'];

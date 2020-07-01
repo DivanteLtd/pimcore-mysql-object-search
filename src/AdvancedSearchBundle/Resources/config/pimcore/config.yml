@@ -18,7 +18,3 @@ advanced_search:
         time: 'bundle.advanced_search.filter.time'
         user: 'bundle.advanced_search.filter.user'
         manyToOneRelation: 'bundle.advanced_search.filter.many_to_one_relation'
-        manyToManyRelation: 'bundle.advanced_search.filter.many_to_many_relation'
-        advancedManyToManyRelation: 'bundle.advanced_search.filter.advanced_many_to_many_relation'
-        manyToManyObjectRelation: 'bundle.advanced_search.filter.many_to_many_object_relation'
-        advancedManyToManyObjectRelation: 'bundle.advanced_search.filter.advanced_many_to_many_object_relation'
