@@ -175,6 +175,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
             $list->setOrder($sortDirection);
             $list->setOffset($start);
             $list->setLimit($limit);
+            $list->setUnpublished(true);
 
             $list->load();
 

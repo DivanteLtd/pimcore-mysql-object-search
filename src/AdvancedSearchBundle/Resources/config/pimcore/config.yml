@@ -18,3 +18,7 @@ advanced_search:
         time: 'bundle.advanced_search.filter.time'
         user: 'bundle.advanced_search.filter.user'
         manyToOneRelation: 'bundle.advanced_search.filter.many_to_one_relation'
+        booleanSelect: 'bundle.advanced_search.filter.boolean_select'
+        coreShopDynamicDropdown: 'bundle.advanced_search.filter.dynamic_dropdown'
+        manyToManyObjectRelation: 'bundle.advanced_search.filter.many_to_many_object_relation'
+        advancedManyToManyObjectRelation: 'bundle.advanced_search.filter.advanced_many_to_many_object_relation'
