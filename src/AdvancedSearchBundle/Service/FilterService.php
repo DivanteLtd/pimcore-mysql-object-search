@@ -74,6 +74,11 @@ class FilterService
         ],
         'equal_related' => [
             'expression' => '%s__id = ? AND %s__type = ?',
+            'data' => [],
+        ],
+        'contains_related' => [
+            'expression' => '%s LIKE ?',
+            'data' => '%,_data_,%',
         ],
     ];
 
@@ -248,9 +253,9 @@ class FilterService
 
     /**
      * @param array $filter
-     * @return array
+     * @return array|string
      */
-    protected function getRelatedData(array $filter): array
+    protected function getRelatedData(array $filter)
     {
         if (
             !array_key_exists('type', $filter['filterEntryData']) &&
@@ -260,7 +265,12 @@ class FilterService
         }
 
         $filterData = $filter['filterEntryData'];
+        $operation = $filter['operator'];
 
-        return [$filterData['id'][0], $filterData['type']];
+        if (is_array(static::OPERATORS[$operation]['data'])) {
+            return [$filterData['id'][0], $filterData['type']];
+        } else {
+            return str_replace('_data_', $filterData['id'][0], static::OPERATORS[$operation]['data']);
+        }
     }
 }

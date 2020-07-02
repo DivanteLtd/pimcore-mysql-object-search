@@ -96,6 +96,22 @@ services:
       class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToOneRelation
       shared: false
 
+    bundle.advanced_search.filter.boolean_select:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\BooleanSelect
+      shared: false
+
+    bundle.advanced_search.filter.dynamic_dropdown:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\DynamicDropdown
+      shared: false
+
+    bundle.advanced_search.filter.many_to_many_object_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\ManyToManyObjectRelation
+      shared: false
+
+    bundle.advanced_search.filter.advanced_many_to_many_object_relation:
+      class: DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\AdvancedManyToManyObjectRelation
+      shared: false
+
     DivanteLtd\AdvancedSearchBundle\Installer:
         public: true
         arguments:
