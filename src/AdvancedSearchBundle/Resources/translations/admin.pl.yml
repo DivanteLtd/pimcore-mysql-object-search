@@ -36,8 +36,8 @@ bundle_advancedSearch_remove_from_shortcuts:  Usuń ze skrótów
 bundle_advancedSearch_short_cut_error:  Nie możesz dodać skrótu dla niezapisanego wyszukiwania
 bundle_advancedSearch_updating_index:  Currently updating search index
 bundle_advancedsearch_search: Zaawansowane wyszukiwanie
-bundle_advancedSearch_character_operator_equal: =
-bundle_advancedSearch_character_operator_not_equal: !=
+bundle_advancedSearch_character_operator_equal: '='
+bundle_advancedSearch_character_operator_not_equal: '!='
 bundle_advancedSearch_character_operator_contain: Zawiera
 bundle_advancedSearch_character_operator_not_contain: Nie zawiera
 bundle_advancedSearch_character_operator_start_from: Zaczyna się od
