@@ -271,7 +271,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
                         buttons: Ext.Msg.OKCANCEL,
                         fn: function (btn) {
                             if (btn == 'ok') {
-                                this.exportPrepare();
+                                this.exportPrepare({}, {downloadUrl: "/admin/object-helper/download-csv-file"});
                             }
                         }.bind(this),
                         icon: Ext.MessageBox.WARNING
@@ -446,7 +446,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 
     },
 
-    exportPrepare: function () {
+    exportPrepare: function (settings, exportType) {
         var fields = this.getGridConfig().columns;
         var fieldKeys = Object.keys(fields);
 
@@ -478,7 +478,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
                 var fieldKeys = Object.keys(fields);
 
                 if (rdata.success && rdata.jobs) {
-                    this.exportProcess(rdata.jobs, rdata.fileHandle, fieldKeys, true);
+                    this.exportProcess(rdata.jobs, rdata.fileHandle, fieldKeys, true, settings, exportType);
                 }
 
             }.bind(this)
@@ -593,5 +593,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 if (pimcore.object.helpers.gridcolumnconfig) {
     pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(pimcore.object.helpers.gridcolumnconfig);
 } else {
-    pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(pimcore.element.helpers.gridColumnConfig);
+    var gridColumnConfigClone = Object.assign({}, pimcore.element.helpers.gridColumnConfig);
+    delete gridColumnConfigClone.exportPrepare;
+    pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(gridColumnConfigClone);
 }
