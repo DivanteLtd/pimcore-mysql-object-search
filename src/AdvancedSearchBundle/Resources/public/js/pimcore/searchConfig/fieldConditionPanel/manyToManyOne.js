@@ -40,16 +40,107 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                     change: function( item, newValue, oldValue, eOpts ) {
                         this.subPanel.removeAll();
                         if(newValue != "object_filter") {
-
                             this.idsField = Ext.create('Ext.form.field.Text',
                                 {
-                                    fieldLabel:  t("bundle_advancedSearch_ids"),
-                                    width: 400,
-                                    value: this.data.filterEntryData && this.data.filterEntryData.id ? this.data.filterEntryData.id.join() : ""
+                                    value: this.data.filterEntryData && this.data.filterEntryData.id ? this.data.filterEntryData.id.join() : "",
+                                    fieldCls: "pimcore_droptarget_input",
+                                    listeners: {
+                                        render: function (el) {
+                                            new Ext.dd.DropZone(el.getEl(), {
+                                                reference: this,
+                                                ddGroup: 'element',
+                                                getTargetFromEvent: function (e) {
+                                                    return this.getEl();
+                                                }.bind(el),
+
+                                                onNodeOver: function (target, dd, e, data) {
+                                                    data = data.records[0].data;
+
+                                                    if (data.elementType == newValue) {
+                                                        return Ext.dd.DropZone.prototype.dropAllowed;
+                                                    }
+
+                                                    return Ext.dd.DropZone.prototype.dropNotAllowed;
+                                                },
+
+                                                onNodeDrop: function (target, dd, e, data) {
+                                                    data = data.records[0].data;
+
+                                                    if (data.elementType == newValue) {
+                                                        this.setValue(data.id);
+                                                        return true;
+                                                    }
+
+                                                    return false;
+                                                }.bind(el)
+                                            });
+                                        }
+                                    }
                                 }
                             );
 
-                            this.subPanel.add(this.idsField);
+                            var items = [
+                                this.idsField,
+                                {
+                                    xtype: "button",
+                                    iconCls: "pimcore_icon_open",
+                                    style: "margin-left: 5px",
+                                    handler: function () {
+                                        if (this.idsField && this.idsField.getValue()) {
+                                            pimcore.helpers.openElement(this.idsField.getValue(), newValue);
+                                        }
+                                    }.bind(this)
+                                },
+                                {
+                                    xtype: "button",
+                                    iconCls: "pimcore_icon_delete",
+                                    style: "margin-left: 5px",
+                                    handler: function() {
+                                        if (this.idsField) {
+                                            this.idsField.setValue("");
+                                        }
+                                    }.bind(this)
+                                },
+                                {
+                                    xtype: "button",
+                                    iconCls: "pimcore_icon_search",
+                                    style: "margin-left: 5px",
+                                    handler: function() {
+                                        pimcore.helpers.itemselector(
+                                            false,
+                                            function (data) {
+                                                this.idsField.setValue(data.id);
+                                            }.bind(this),
+                                            {},
+                                            {
+                                                context: Ext.apply(
+                                                    {
+                                                        scope: "objectEditor"
+                                                    },
+                                                    {
+                                                        containerType: "object",
+                                                        fieldname: null
+                                                    }
+                                                )
+                                            }
+                                        );
+                                    }.bind(this)
+                                }
+                            ];
+
+                            this.composite = Ext.create('Ext.form.FieldContainer', {
+                                fieldLabel: t("bundle_advancedSearch_ids"),
+                                width: 400,
+                                layout: 'hbox',
+                                items: items,
+                                componentCls: "object_field",
+                                border: false,
+                                style: {
+                                    padding: 0
+                                }
+                            });
+
+                            this.subPanel.add(this.composite);
                         } else {
 
                             var classStore = pimcore.globalmanager.get("object_types_store");
