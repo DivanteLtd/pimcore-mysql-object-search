@@ -121,10 +121,7 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                                                 this.tooltip.setHtml(data.fullpath);
                                             }.bind(this),
                                             {
-                                                type: ["object"],
-                                                subtype: {
-                                                    object: ["object"]
-                                                },
+                                                type: this.fieldSelectionInformation.context.allowedTypes.map((t) => t[0]),
                                                 specific: {
                                                     classes: this.fieldSelectionInformation.context.allowedClasses
                                                 }
