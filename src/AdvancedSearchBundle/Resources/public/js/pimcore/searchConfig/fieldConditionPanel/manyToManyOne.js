@@ -79,6 +79,11 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                                 }
                             );
 
+                            this.tooltip = new Ext.tip.ToolTip({
+                                target: this.idsField.getEl(),
+                                html: ''
+                            });
+
                             var items = [
                                 this.idsField,
                                 {
@@ -98,6 +103,8 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                                     handler: function() {
                                         if (this.idsField) {
                                             this.idsField.setValue("");
+                                            this.tooltip.setTarget(null);
+                                            this.tooltip.setHtml("");
                                         }
                                     }.bind(this)
                                 },
@@ -110,8 +117,18 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                                             false,
                                             function (data) {
                                                 this.idsField.setValue(data.id);
+                                                this.tooltip.setTarget(this.idsField.getEl());
+                                                this.tooltip.setHtml(data.fullpath);
                                             }.bind(this),
-                                            {},
+                                            {
+                                                type: this.fieldSelectionInformation.context.allowedTypes.map((t) => t[0]),
+                                                subtype: {
+                                                    object: ["object"]
+                                                },
+                                                specific: {
+                                                    classes: this.fieldSelectionInformation.context.allowedClasses
+                                                }
+                                            },
                                             {
                                                 context: Ext.apply(
                                                     {
@@ -199,6 +216,10 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                 }
             }
         );
+
+        if (this.typeField.getStore().getData().items.length === 1) {
+            this.typeField.select(this.typeField.getStore().getData().items[0].data.key);
+        }
 
         if(this.data.filterEntryData) {
             if(this.data.filterEntryData.id) {

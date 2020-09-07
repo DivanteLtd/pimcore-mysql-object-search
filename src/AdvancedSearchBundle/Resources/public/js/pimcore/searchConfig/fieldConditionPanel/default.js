@@ -87,7 +87,9 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.default = Class.c
 
         if (this.data.operator) {
             operator = this.data.operator;
-            this.termField.setHidden(operator == "is_defined" || operator == "is_not_defined");
+            if (this.termField) {
+                this.termField.setHidden(operator == "is_defined" || operator == "is_not_defined");
+            }
         }
 
         this.operatorField.setValue(operator);

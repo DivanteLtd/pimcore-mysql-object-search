@@ -290,7 +290,6 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
         // get available user
         $list = new \Pimcore\Model\User\Listing();
 
-        $list->setCondition('roles LIKE ? ', '%3%');
         $list->load();
         $userList = $list->getUsers();
 

@@ -91,7 +91,21 @@ class SavedSearch extends Model\AbstractModel
      */
     public function save(): void
     {
+        $this->validateClassId();
         $this->getDao()->save();
+    }
+
+    /**
+     * @return bool
+     */
+    private function validateClassId(): void
+    {
+        $config = json_decode($this->config, true);
+        try {
+            $classDefinition = Model\DataObject\ClassDefinition::getById($config['classId']);
+        } catch (\Exception $e) {
+            throw new Model\Element\ValidationException('Searched class is invalid or not selected');
+        }
     }
 
     /**
