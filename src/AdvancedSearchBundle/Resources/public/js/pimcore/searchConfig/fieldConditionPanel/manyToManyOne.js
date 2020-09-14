@@ -84,6 +84,23 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.manyToOneRelation
                                 html: ''
                             });
 
+                            if (this.idsField.getValue()) {
+                                Ext.Ajax.request({
+                                    url: Routing.generate('pimcore_admin_element_typepath'),
+                                    params: {
+                                        id: this.idsField.getValue()
+                                    },
+                                    success: function (response) {
+                                        var res = Ext.decode(response.responseText);
+
+                                        if (res.success) {
+                                            this.tooltip.setTarget(this.idsField.getEl());
+                                            this.tooltip.setHtml(res.fullpath);
+                                        }
+                                    }.bind(this)
+                                });
+                            }
+
                             var items = [
                                 this.idsField,
                                 {
