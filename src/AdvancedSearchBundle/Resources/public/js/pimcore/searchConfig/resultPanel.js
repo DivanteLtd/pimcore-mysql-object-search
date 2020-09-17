@@ -39,6 +39,11 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             this.extensionBag = new pimcore.bundle.advancedSearch.searchConfig.ResultPanelExtensionBag(this, typeof gridConfigData != 'undefined' ? gridConfigData.predefinedFilter : null);
             pimcore.plugin.broker.fireEvent("onAdvancedObjectSearchResult", this.extensionBag);
         }
+
+        this.batchPrepareUrl = Routing.generate('pimcore_admin_dataobject_dataobjecthelper_getbatchjobs');
+        this.batchProcessUrl = Routing.generate('pimcore_admin_dataobject_dataobjecthelper_batch');
+        this.exportPrepareUrl = Routing.generate('pimcore_admin_dataobject_dataobjecthelper_getexportjobs');
+        this.exportProcessUrl = Routing.generate('pimcore_admin_dataobject_dataobjecthelper_doexport');
     },
 
     getLayout: function (initialFilter) {
@@ -271,7 +276,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
                         buttons: Ext.Msg.OKCANCEL,
                         fn: function (btn) {
                             if (btn == 'ok') {
-                                this.exportPrepare({}, {downloadUrl: "/admin/object-helper/download-csv-file"});
+                                this.exportPrepare({}, Ext.create(pimcore.object.gridexport.csv));
                             }
                         }.bind(this),
                         icon: Ext.MessageBox.WARNING
@@ -407,7 +412,21 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
         menu.showAt(e.pageX, e.pageY);
     },
 
-    batchPrepare: function (columnIndex, onlySelected, append) {
+    batchPrepare: function (column, onlySelected, append, remove) {
+        var dataIndexName = column.dataIndex
+        var gridColumns = this.grid.getColumns();
+        var columnIndex = -1;
+        for (let i = 0; i < gridColumns.length; i++) {
+            let dataIndex = gridColumns[i].dataIndex;
+            if (dataIndex == dataIndexName) {
+                columnIndex = i;
+                break;
+            }
+        }
+        if (columnIndex < 0) {
+            return;
+        }
+
         // no batch for system properties
         if (this.systemColumns.indexOf(this.grid.getColumns()[columnIndex].dataIndex) > -1) {
             return;
@@ -595,5 +614,6 @@ if (pimcore.object.helpers.gridcolumnconfig) {
 } else {
     var gridColumnConfigClone = Object.assign({}, pimcore.element.helpers.gridColumnConfig);
     delete gridColumnConfigClone.exportPrepare;
+    delete gridColumnConfigClone.batchPrepare;
     pimcore.bundle.advancedSearch.searchConfig.resultPanel.addMethods(gridColumnConfigClone);
 }
