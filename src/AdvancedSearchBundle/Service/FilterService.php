@@ -8,6 +8,7 @@ use Pimcore\Bundle\AdminBundle\Security\User\TokenStorageUserResolver;
 use Pimcore\Model\DataObject\ClassDefinition;
 use Pimcore\Model\DataObject\Fieldcollection\Definition;
 use Pimcore\Model\DataObject\Listing;
+use Pimcore\Model\Element\ValidationException;
 use Pimcore\Model\User;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -226,14 +227,31 @@ class FilterService
     protected function processFilter(Listing $listing, array $filter, string $operator): Listing
     {
         $operation = $filter['operator'];
+        $fieldDefinition = $listing->getClass()->getFieldDefinition($filter['fieldname']);
 
-        if (is_array($filter['filterEntryData'])) {
+        if ($fieldDefinition && $fieldDefinition->isRelationType()) {
             $expression = sprintf(
                 static::OPERATORS[$operation]['expression'],
                 $filter['fieldname'],
                 $filter['fieldname']
             );
             $data = $this->getRelatedData($filter);
+        } elseif ($fieldDefinition && $fieldDefinition->getFieldType() === 'localizedfields') {
+            if (count($filter['filterEntryData']) === 0) {
+                return $listing;
+            }
+            $language = array_keys($filter['filterEntryData'])[0];
+
+            if ($listing->getLocale() && $listing->getLocale() !== $language || count($filter['filterEntryData']) > 1) {
+                throw new ValidationException('Multiple languages are not supported in a single query');
+            }
+            $listing->setLocale($language);
+
+            foreach ($filter['filterEntryData'][$language] as $actualFilter) {
+                $this->processFilter($listing, $actualFilter, $operator);
+            }
+
+            return $listing;
         } else {
             $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
             $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
