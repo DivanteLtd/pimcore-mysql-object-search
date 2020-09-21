@@ -171,8 +171,12 @@ class ManyToOneRelation extends DefaultAdapter implements IFieldDefinitionAdapte
         if($this->fieldDefinition->getObjectsAllowed()) {
             $allowedTypes[] = ["object", "object_ids"];
 
-            foreach($this->fieldDefinition->getClasses() as $class) {
-                $allowedClasses[] = $class['classes'];
+            if (strpos($this->fieldDefinition->getFieldtype(), 'advanced') === false) {
+                foreach ($this->fieldDefinition->getClasses() as $class) {
+                    $allowedClasses[] = $class['classes'];
+                }
+            } else {
+                $allowedClasses[] = $this->fieldDefinition->getAllowedClassId();
             }
         }
 
