@@ -243,25 +243,30 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
             $request->setLocale($request->get('language'));
         }
 
-        $data = json_decode($request->get('filter'), true);
+        $ids = $request->get('ids');
 
-        $class = DataObject\ClassDefinition::getById($data['classId']);
-        $className = $class->getName();
+        if (!$ids) {
+            $data = json_decode($request->get('filter'), true);
 
-        $listClass = '\\Pimcore\\Model\\DataObject\\' . ucfirst($className) . '\\Listing';
+            $class = DataObject\ClassDefinition::getById($data['classId']);
+            $className = $class->getName();
 
-        /**
-         * @var $list Listing
-         */
-        $list = new $listClass();
-        $list->setObjectTypes(['object', 'folder', 'variant']);
+            $listClass = '\\Pimcore\\Model\\DataObject\\' . ucfirst($className) . '\\Listing';
 
-        $results = $service->doFilter(
-            $list,
-            $data['conditions']
-        );
+            /**
+             * @var $list Listing
+             */
+            $list = new $listClass();
+            $list->setObjectTypes(['object', 'folder', 'variant']);
 
-        $ids = $results->loadIdList();
+            $results = $service->doFilter(
+                $list,
+                $data['conditions']
+            );
+
+            $ids = $results->loadIdList();
+        }
+
         $jobs = array_chunk($ids, 20);
 
         $fileHandle = uniqid('export-');
