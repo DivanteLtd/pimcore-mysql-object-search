@@ -61,28 +61,12 @@ pimcore.bundle.advancedSearch.searchConfig.fieldConditionPanel.numeric = Class.c
     },
 
     getFilterValues: function() {
-
-        var filterEntryData = {},
-            operator = "must",
-            operatorFieldValue = this.operatorField.getValue();
-
-        if(operatorFieldValue == "eq") {
-            filterEntryData = this.termField.getValue()
-        } else {
-            filterEntryData[operatorFieldValue] = this.termField.getValue();
-        }
-
-        if(operatorFieldValue == "exists" || operatorFieldValue == "not_exists") {
-            operator = operatorFieldValue;
-        }
-
         return {
             fieldname: this.fieldSelectionInformation.fieldName,
-            filterEntryData: filterEntryData,
-            operator: operator,
+            filterEntryData: this.termField.getValue(),
+            operator: this.operatorField.getValue(),
             ignoreInheritance: this.inheritanceField.getValue()
         };
-
     }
 
 });
