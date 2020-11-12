@@ -12,6 +12,7 @@ trait MultiRelatedOperatorsTrait
     {
         return [
             ['fieldName' => 'contains_related', 'fieldLabel' => 'bundle_advancedSearch_character_operator_contain'],
+            ['fieldName' => 'not_contain_related', 'fieldLabel' => 'bundle_advancedSearch_character_operator_not_contain'],
         ];
     }
 }

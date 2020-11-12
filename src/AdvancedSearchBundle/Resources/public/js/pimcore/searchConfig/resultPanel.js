@@ -207,14 +207,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             ]
         });
 
-
-        this.pagingtoolbar = Ext.create("Ext.PagingToolbar", {
-            pageSize: itemsPerPage,
-            store: this.store,
-            displayInfo: true,
-            displayMsg: '{0} - {1} / {2}',
-            emptyMsg: t("no_objects_found")
-        });
+        this.pagingtoolbar = pimcore.helpers.grid.buildDefaultPagingToolbar(this.store, {pageSize: itemsPerPage});
 
         this.languageInfo = new Ext.Toolbar.TextItem({
             text: t("grid_current_language") + ": " + pimcore.available_languages[this.gridLanguage]

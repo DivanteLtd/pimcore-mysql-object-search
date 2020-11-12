@@ -81,6 +81,10 @@ class FilterService
             'expression' => '%s LIKE ?',
             'data' => '%,_data_,%',
         ],
+        'not_contain_related' => [
+            'expression' => 'NOT (%s LIKE ?) OR %s IS NULL',
+            'data' => '%,_data_,%',
+        ],
     ];
 
     /**
@@ -126,14 +130,45 @@ class FilterService
     public function getFieldDefinitionAdapter(ClassDefinition\Data $fieldDefinition, bool $considerInheritance)
     {
         $adapter = null;
+        $fieldType = $fieldDefinition->fieldtype;
 
-        if ($this->filterLocator->has($fieldDefinition->fieldtype)) {
-            $adapter = $this->filterLocator->get($fieldDefinition->fieldtype);
+        if ($fieldDefinition instanceof ClassDefinition\Data\CalculatedValue) {
+            $fieldType = $this->getCalculatedValueFieldType($fieldDefinition);
+        }
+
+        if ($this->filterLocator->has($fieldType)) {
+            $adapter = $this->filterLocator->get($fieldType);
             $adapter->setConsiderInheritance($considerInheritance);
             $adapter->setFieldDefinition($fieldDefinition);
         }
 
         return $adapter;
+    }
+
+    private function getCalculatedValueFieldType(ClassDefinition\Data\CalculatedValue $fieldDefinition): ?string
+    {
+        $calculatorClass = $fieldDefinition->getCalculatorClass();
+        if (!$calculatorClass) {
+            return null;
+        }
+
+        $reflection = new \ReflectionClass($calculatorClass);
+        if (!$reflection->hasMethod('compute')) {
+            return null;
+        }
+
+        $method = $reflection->getMethod('compute');
+        if (!$method->hasReturnType()) {
+            return 'input';
+        }
+
+        $map = [
+            'bool' => 'checkbox',
+            'int' => 'numeric',
+            'float' => 'numeric',
+            'string' => 'input',
+        ];
+        return $map[strtolower($method->getReturnType())] ?? 'input';
     }
 
     /**
