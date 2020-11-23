@@ -85,6 +85,10 @@ class FilterService
             'expression' => 'NOT (%s LIKE ?) OR %s IS NULL',
             'data' => '%,_data_,%',
         ],
+        'empty_boolean_select' => [
+            'expression' => '%s = 0 OR %s IS NULL',
+            'data' => '_data_',
+        ],
     ];
 
     /**
@@ -223,7 +227,7 @@ class FilterService
 
         $options = [];
 
-        if (!$field->getMandatory()) {
+        if (!$field->getMandatory() && !$field instanceof ClassDefinition\Data\BooleanSelect) {
             $empty = [
                 'key' => 'empty',
                 'value' => 'null',
@@ -262,7 +266,9 @@ class FilterService
     protected function processFilter(Listing $listing, array $filter, string $operator): Listing
     {
         $operation = $filter['operator'];
+        /** @var ClassDefinition\Data $fieldDefinition */
         $fieldDefinition = $listing->getClass()->getFieldDefinition($filter['fieldname']);
+        $fieldType = $fieldDefinition ? $fieldDefinition->getFieldType() : '';
 
         if ($fieldDefinition && $fieldDefinition->isRelationType()) {
             $expression = sprintf(
@@ -271,7 +277,7 @@ class FilterService
                 $filter['fieldname']
             );
             $data = $this->getRelatedData($filter);
-        } elseif ($fieldDefinition && $fieldDefinition->getFieldType() === 'localizedfields') {
+        } elseif ($fieldType === 'localizedfields') {
             if (count($filter['filterEntryData']) === 0) {
                 return $listing;
             }
@@ -287,6 +293,13 @@ class FilterService
             }
 
             return $listing;
+        } elseif ($fieldType === 'booleanSelect' && !$filter['filterEntryData']) {
+            $expression = sprintf(
+                static::OPERATORS['empty_boolean_select']['expression'],
+                $filter['fieldname'],
+                $filter['fieldname']
+            );
+            $data = null;
         } else {
             $expression = sprintf(static::OPERATORS[$operation]['expression'], $filter['fieldname']);
             $data = str_replace('_data_', $filter['filterEntryData'], static::OPERATORS[$operation]['data']);
