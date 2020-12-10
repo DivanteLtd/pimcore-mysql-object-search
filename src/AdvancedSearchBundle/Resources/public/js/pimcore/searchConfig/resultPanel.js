@@ -90,9 +90,8 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
     },
 
     updateGrid: function (classId) {
-        this.classId = classId;
         var classStore = pimcore.globalmanager.get("object_types_store");
-        var classRecord = classStore.findRecord("id", this.classId);
+        var classRecord = classStore.findRecord("id", classId);
         if (classRecord) {
             this.selectedClass = classRecord.data.text;
 
@@ -114,14 +113,27 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 
 
             } else {
+                if (this.settings && this.settings.gridConfigId && classId === this.classId){
+                    var params = {
+                        id: classId,
+                        gridtype: "grid",
+                        gridConfigId: this.settings.gridConfigId,
+                        searchType: this.searchType
+                    }
+                } else {
+                    params = {
+                        name: this.selectedClass,
+                        gridtype: "grid"
+                    }
+                }
                 Ext.Ajax.request({
                     url: "/admin/object-helper/grid-get-column-config",
-                    params: {name: this.selectedClass, gridtype: "grid"},
+                    params: params,
                     success: this.createGrid.bind(this, false)
                 });
             }
         }
-
+        this.classId = classId;
     },
 
     getTableDescription: function () {
