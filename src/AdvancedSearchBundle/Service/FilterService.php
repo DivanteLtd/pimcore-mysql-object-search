@@ -12,6 +12,7 @@ use Pimcore\Model\Element\ValidationException;
 use Pimcore\Model\User;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Pimcore\Model\DataObject\ClassDefinition\Helper\CalculatorClassResolver;
 
 /**
  * Class FilterService
@@ -156,7 +157,8 @@ class FilterService
             return null;
         }
 
-        $reflection = new \ReflectionClass($calculatorClass);
+        $calculator = CalculatorClassResolver::resolveCalculatorClass($calculatorClass);
+        $reflection = new \ReflectionClass($calculator);
         if (!$reflection->hasMethod('compute')) {
             return null;
         }
