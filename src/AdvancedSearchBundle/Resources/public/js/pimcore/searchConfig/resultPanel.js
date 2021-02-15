@@ -172,7 +172,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             fields = response;
             this.settings = settings;
             if (this.columnConfigButton) {
-                this.buildColumnConfigMenu(true);
+                this.buildColumnConfigMenu();
             }
         }
 
@@ -246,7 +246,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             menu: []
         });
 
-        this.buildColumnConfigMenu(true);
+        this.buildColumnConfigMenu();
 
         var tbars = [];
         var plugins = [];
