@@ -270,27 +270,17 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             });
             plugins.push(this.cellEditing);
 
-            tbar = tbar.concat(['->', "-", {
-                text: t("export_csv"),
-                iconCls: "pimcore_icon_export",
-                handler: function () {
+            var exportButtons = this.getExportButtons();
+            var firstButton = exportButtons.pop();
 
-                    Ext.MessageBox.show({
-                        title: t('warning'),
-                        msg: t('csv_object_export_warning'),
-                        buttons: Ext.Msg.OKCANCEL,
-                        fn: function (btn) {
-                            if (btn == 'ok') {
-                                this.exportPrepare({}, Ext.create(pimcore.object.gridexport.csv));
-                            }
-                        }.bind(this),
-                        icon: Ext.MessageBox.WARNING
-                    });
+            this.exportButton = new Ext.SplitButton({
+                text: firstButton.text,
+                iconCls: firstButton.iconCls,
+                handler: firstButton.handler,
+                menu: exportButtons,
+            });
 
-
-                }.bind(this)
-            }, "-", this.columnConfigButton
-            ]);
+            tbar = tbar.concat(['->', "-", this.exportButton, "-", this.columnConfigButton]);
 
             tbars = [{
                 xtype: 'toolbar',
