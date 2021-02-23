@@ -122,7 +122,9 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
                     }
                 } else {
                     params = {
+                        id: classId,
                         name: this.selectedClass,
+                        searchType: "folder",
                         gridtype: "grid"
                     }
                 }
@@ -172,7 +174,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             fields = response;
             this.settings = settings;
             if (this.columnConfigButton) {
-                this.buildColumnConfigMenu();
+                this.buildAosMenu();
             }
         }
 
@@ -246,7 +248,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
             menu: []
         });
 
-        this.buildColumnConfigMenu();
+        this.buildAosMenu();
 
         var tbars = [];
         var plugins = [];
@@ -356,6 +358,16 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
         this.layout.removeAll();
         this.layout.add(this.grid);
         this.layout.updateLayout();
+    },
+
+    buildAosMenu: function() {
+        if (!this.searchType) {
+            this.object = { id:1 };
+            this.searchType = 'folder'
+        }
+        this.buildColumnConfigMenu(false);
+        this.columnConfigButton.menu.items.getAt(0).hide();
+        this.columnConfigButton.menu.items.getAt(2).hide();
     },
 
     onRowContextmenu: function (grid, record, tr, rowIndex, e, eOpts) {
