@@ -8,22 +8,27 @@ use DivanteLtd\AdvancedSearchBundle\Model\SavedSearch\Dao;
 use Doctrine\DBAL\Migrations\Version;
 use Doctrine\DBAL\Schema\Schema;
 use Pimcore\Config;
-use Pimcore\Extension\Bundle\Installer\MigrationInstaller;
+use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
 
 /**
  * Class Installer
  * @package DivanteLtd\AdvancedSearchBundle
  */
-class Installer extends MigrationInstaller
+class Installer extends AbstractInstaller
 {
     const QUEUE_TABLE_NAME = 'bundle_advancedsearch_update_queue';
+
+    public function __construct($bundle = 'advancedsearch')
+    {
+        parent::__construct();
+    }
 
     /**
      * @param Schema $schema
      * @param Version $version
      * @return bool
      */
-    public function migrateInstall(Schema $schema, Version $version)
+    public function install()
     {
         $this->installDatabase();
 
@@ -35,7 +40,7 @@ class Installer extends MigrationInstaller
      * @param Version $version
      * @return void
      */
-    public function migrateUninstall(Schema $schema, Version $version): void
+    public function uninstall()
     {
     }
 
@@ -89,7 +94,7 @@ class Installer extends MigrationInstaller
         $result = null;
 
         try {
-            if (Config::getSystemConfig()) {
+            if (Config::getSystemConfiguration()) {
                 $result = \Pimcore\Db::get()->fetchAll("SHOW TABLES LIKE '" . self::QUEUE_TABLE_NAME . "';");
             }
         } catch (\Exception $e) {
@@ -97,5 +102,15 @@ class Installer extends MigrationInstaller
         }
 
         return !empty($result);
+    }
+
+    public function canBeInstalled()
+    {
+        return true;
+    }
+
+    public function canBeUninstalled()
+    {
+        return false;
     }
 }
